@@ -3,18 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace E_ranga.Models
 {
-     public class User{
-        [Required(ErrorMessage = "Please enter your email")]
-        [EmailAddress(ErrorMessage = "Invalid email address")]
-        [Column("email")]
-        public string Email { get; set; }
-        [Required(ErrorMessage = "Please enter your password")]
-        [DataType(DataType.Password)]
-        [Column("password")]
-        public string Password { get; set; }
-    }
     [Table("users")]
-    public class UserRegister : User
+    public class UserRegister
     {
         [Key]
         [Column("id")]
@@ -25,12 +15,20 @@ namespace E_ranga.Models
         [Required(ErrorMessage = "Please enter your last name")]
         [Column("last_name")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Please enter your email")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        [Column("email")]
+        public string Email { get; set; }
         [Required(ErrorMessage = "Please enter your address")]
         [Column("address")]
         public string Address { get; set; }
         [Required(ErrorMessage = "Please enter your phone number")]
         [Column("phone_number")]
         public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Please enter your password")]
+        [DataType(DataType.Password)]
+        [Column("password")]
+        public string Password { get; set; }
         [NotMapped]
         [Required(ErrorMessage = "Please confirm your password")]
         [DataType(DataType.Password)]

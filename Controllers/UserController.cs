@@ -3,6 +3,7 @@ using E_ranga.Models;
 using E_ranga.Data;
 using BCrypt.Net;
 using Namespace;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_ranga.Controllers
 {
@@ -74,7 +75,6 @@ namespace E_ranga.Controllers
                   }else{
                     return RedirectToAction("Index", "Home");
                   }
-                    
                 }else{
                     ModelState.AddModelError("", "Invalid Password");
                 }
@@ -87,10 +87,47 @@ namespace E_ranga.Controllers
 
         return View(loginViewModel);
     }
-    [HttpGet]
-      public IActionResult Dashboard()
+    [HttpPost]
+    public async Task<IActionResult> Edit(UserRegister user)
+    {
+        if (ModelState.IsValid)
         {
-            return View();
+            try
+            {
+                await _userRepository.UpdateUserAsync(user);
+                return RedirectToAction("Dashboard");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                var userExist = await _userRepository.GetUserByEmailAsync(user.Email);
+                if (userExist == null)
+                {
+                    return NotFound();
+                }
+                throw;
+            }
         }
+        return View(user);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var user = await _userRepository.GetUserByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        await _userRepository.DeleteUserAsync(user);
+        return RedirectToAction("Dashboard");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Dashboard()
+    {
+        var users = await _userRepository.GetAllUsersAsync();
+        return View(users);
+    }
     }
 }

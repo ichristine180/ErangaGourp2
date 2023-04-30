@@ -49,23 +49,39 @@ namespace E_ranga{
             app.UseRouting();
             app.UseAuthorization();
             app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints =>
+             {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "home",
+                defaults: new { controller = "Home", action = "Index" });
+            endpoints.MapControllerRoute(
+                name: "register",
+                pattern: "register",
+                defaults: new { controller = "User", action = "Register" });
 
-app.MapControllerRoute(
-    name: "register",
-    pattern: "register",
-    defaults: new { controller = "User", action = "Register" });
+            endpoints.MapControllerRoute(
+                name: "login",
+                pattern: "login",
+                defaults: new { controller = "User", action = "Login" });
 
-app.MapControllerRoute(
-    name: "login",
-    pattern: "login",
-    defaults: new { controller = "User", action = "Login" });
+            endpoints.MapControllerRoute(
+                name: "dashboard",
+                pattern: "dashboard",
+                defaults: new { controller = "User", action = "Dashboard" });
+            endpoints.MapControllerRoute(
+                name: "edit",
+                pattern: "edit/{id:int}",
+                defaults: new { controller = "User", action = "Edit" });
 
-app.MapControllerRoute(
-    name: "dashboard",
-    pattern: "dashboard",
-    defaults: new { controller = "User", action = "Dashboard" });
+            endpoints.MapControllerRoute(
+                name: "delete",
+                pattern: "delete/{id:int}",
+                defaults: new { controller = "User", action = "Delete" });
+
+            });
             app.Run();
         }
     }

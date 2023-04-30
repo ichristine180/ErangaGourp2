@@ -11,7 +11,6 @@ namespace E_ranga.Data
         }
         public DbSet<Documents> documents { get; set; }
         public DbSet<UserRegister> UserRegister { get; set; }
-
         public DbSet<UserLogin> UserLogin { get; set; }
     }
 

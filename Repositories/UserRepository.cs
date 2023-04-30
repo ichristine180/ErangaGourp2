@@ -23,5 +23,27 @@ namespace Namespace2
         {
             return await _dbContext.UserRegister.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<IEnumerable<UserRegister>> GetAllUsersAsync()
+    {
+        return await _dbContext.UserRegister.ToListAsync();
+    }
+
+    public async Task<UserRegister> GetUserByIdAsync(int id)
+    {
+        return await _dbContext.UserRegister.FindAsync(id);
+    }
+
+    public async Task UpdateUserAsync(UserRegister user)
+    {
+        _dbContext.Entry(user).State = EntityState.Modified;
+        await _dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteUserAsync(UserRegister user)
+    {
+        _dbContext.UserRegister.Remove(user);
+        await _dbContext.SaveChangesAsync();
+    }
     }
 }
