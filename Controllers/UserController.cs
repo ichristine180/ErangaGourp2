@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using E_ranga.Models;
 using E_ranga.Data;
-using Microsoft.EntityFrameworkCore;
+using BCrypt.Net;
 using Namespace;
-using Microsoft.AspNetCore.Identity;
 
 namespace E_ranga.Controllers
 {
@@ -31,8 +30,7 @@ namespace E_ranga.Controllers
             var user = await _userRepository.GetUserByEmailAsync(users.Email);
             if (user == null)
             {
-                var passwordHasher = new PasswordHasher<UserRegister>();
-                var hashedPassword = passwordHasher.HashPassword(users, users.Password);
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(users.Password);
                 var newUser = new UserRegister
                 {
                     FirstName = users.FirstName,
@@ -49,14 +47,8 @@ namespace E_ranga.Controllers
             ModelState.AddModelError(string.Empty, "Email already exists");
             }
         }
-        Console.WriteLine("Email Already Exist");
         return View("Register", users);
     }
-      [HttpGet]
-      public IActionResult Dashboard()
-        {
-            return View();
-        }
       [HttpGet]
       public IActionResult Login()
         {
@@ -69,18 +61,22 @@ namespace E_ranga.Controllers
         if (ModelState.IsValid)
         {
             var user = await _userRepository.GetUserByEmailAsync(loginViewModel.Email);
-            Console.WriteLine(user.Email);
             if (user != null)
             {
-                var passwordHasher = new PasswordHasher<UserLogin>();
-                var result = passwordHasher.VerifyHashedPassword(loginViewModel, user.Password, loginViewModel.Password);
-
-                if (result == PasswordVerificationResult.Success)
+                bool passwordMatchesHash = BCrypt.Net.BCrypt.Verify(loginViewModel.Password, user.Password);
+                if (passwordMatchesHash)
                 {
                     // Login successful
                     // You can set a session variable or some other means of tracking the logged in user here
                   Console.WriteLine("Logged in Sucessfully!!");
+                  if(loginViewModel.Email == "admin@gmail.com"){
                     return RedirectToAction("Dashboard");
+                  }else{
+                    return RedirectToAction("Index", "Home");
+                  }
+                    
+                }else{
+                    ModelState.AddModelError("", "Invalid Password");
                 }
             }
             else{
@@ -91,5 +87,10 @@ namespace E_ranga.Controllers
 
         return View(loginViewModel);
     }
+    [HttpGet]
+      public IActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

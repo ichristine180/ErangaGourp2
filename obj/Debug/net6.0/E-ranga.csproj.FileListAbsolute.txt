@@ -143,3 +143,4 @@
 /Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
 /Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/bin/Debug/net6.0/DotNetEnv.dll
 /Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/bin/Debug/net6.0/Sprache.dll
+/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/bin/Debug/net6.0/BCrypt.Net-Next.dll

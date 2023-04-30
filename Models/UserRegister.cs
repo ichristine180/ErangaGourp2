@@ -12,7 +12,6 @@ namespace E_ranga.Models
         [DataType(DataType.Password)]
         [Column("password")]
         public string Password { get; set; }
-
     }
     [Table("users")]
     public class UserRegister : User

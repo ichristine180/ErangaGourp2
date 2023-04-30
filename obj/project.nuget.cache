@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZB3rOjtstb7cl8vZ3RjJwKKnPHkl0bkw+5DOaETPtu7nsy+FsLMRQN6aWhT81XjOrOqNFKVXZPifvxxBLyEMKA==",
+  "dgSpecHash": "tkIVX7DppmzeaH7RrSe1KoZBDOTdElJUhDgZiDC3+zSZW2NYgamidfkQ19+VNhuK6kmGByvvGMIz5f+O/xoqxg==",
   "success": true,
   "projectFilePath": "/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/E-ranga.csproj",
   "expectedPackageFiles": [
+    "/Users/andelarwanda/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/andelarwanda/.nuget/packages/dotenv.net/3.1.2/dotenv.net.3.1.2.nupkg.sha512",
     "/Users/andelarwanda/.nuget/packages/dotnetenv/2.5.0/dotnetenv.2.5.0.nupkg.sha512",
     "/Users/andelarwanda/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
