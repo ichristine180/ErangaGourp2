@@ -1,0 +1,49 @@
+.navbar {
+    background-color: #fff; /* Set the background color of the navbar */
+    border-bottom: 1px solid #cccccc; /* Add a bottom border to the navbar */
+    margin-top: -30px;
+    margin-bottom: 15px;
+    padding: 20px 10px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem; /* Increase the font size of the navbar brand */
+    font-weight: bold; /* Make the navbar brand bold */
+    color: #3b4357; /* Set the color of the navbar brand */
+  }
+  .navbar-collapse{
+    right: 0;
+    position: absolute;
+  }
+  .navbar-nav {
+    margin-right: auto; /* Move the navbar links to the right */
+  }
+  
+  .nav-item {
+    margin: 0 10px; /* Add some space between the navbar links */
+  }
+  
+  .nav-link {
+    font-size: 1.2rem; /* Increase the font size of the navbar links */
+    font-weight: 500; /* Set the font weight of the navbar links */
+    color: #3b4357; /* Set the color of the navbar links */
+    text-transform: capitalize; /* Make the navbar links uppercase */
+    padding: 10px 15px; /* Add some padding to the navbar links */
+    border-radius: 0px; /* Add some border radius to the navbar links */
+    transition: background-color 0.3s ease; /* Add a transition effect to the background color */
+  }
+  
+  .nav-link:hover {
+   
+    color: #000000; /* Change the color of the navbar links on hover */
+    text-decoration-line: underline;
+  }
+  footer{
+    bottom: 0;
+    text-align: center;
+    left: 0;
+    padding: 40px;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+  }
