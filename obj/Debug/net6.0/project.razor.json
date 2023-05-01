@@ -18384,6 +18384,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/User/Dashboard.cshtml",
+      "TargetPath": "Views\\User\\Dashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -18391,6 +18396,11 @@
     {
       "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/User/Login.cshtml",
+      "TargetPath": "Views\\User\\Login.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18406,6 +18416,11 @@
     {
       "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/Document/Create.cshtml",
       "TargetPath": "Views\\Document\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/User/Register.cshtml",
+      "TargetPath": "Views\\User\\Register.cshtml",
       "FileKind": "mvc"
     }
   ],

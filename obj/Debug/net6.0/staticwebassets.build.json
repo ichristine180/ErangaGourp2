@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fFJpelViFwm5NN+E76VhXEzfjyew/UFHcTlmSby8Xwk=",
+  "Hash": "0L5lePOACEYsS0t17iYqRp1BxPHPoJ3Mdi/Y7n+6sLA=",
   "Source": "E-ranga",
   "BasePath": "_content/E-ranga",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/E_ranga.css"
+    },
+    {
+      "Identity": "/home/chris/MyApp/ErangaGourp2/wwwroot/css/layout.css",
+      "SourceId": "E-ranga",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/chris/MyApp/ErangaGourp2/wwwroot/",
+      "BasePath": "_content/E-ranga",
+      "RelativePath": "css/layout.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/layout.css"
     },
     {
       "Identity": "/home/chris/MyApp/ErangaGourp2/wwwroot/css/site.css",
