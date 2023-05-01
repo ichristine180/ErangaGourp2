@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using E_ranga.Models;
 using E_ranga.Data;
-using BCrypt.Net;
 using Namespace;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 namespace E_ranga.Controllers
 { 
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IUserRepository _userRepository;
         private readonly ApplicationDbContext _context;
@@ -16,9 +14,8 @@ namespace E_ranga.Controllers
         {
             _userRepository = userRepository;
             _context = context;
-        }
 
-       
+        }
         public IActionResult Register()
         {
             return View();
@@ -53,45 +50,14 @@ namespace E_ranga.Controllers
             }
             return View("Register", users);
         }
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        
         [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Dashboard");
         }
-        [HttpPost]
-        public async Task<IActionResult> Login(UserLogin loginViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await _userRepository.GetUserByEmailAsync(loginViewModel.Email);
-                if (user != null)
-                {
-                    bool passwordMatchesHash = BCrypt.Net.BCrypt.Verify(loginViewModel.Password, user.Password);
-                    if (passwordMatchesHash)
-                    {
-                        HttpContext.Session.SetString("email", loginViewModel.Email);
-                        return RedirectToAction("Dashboard");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Invalid Password");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid email or password");
-                    ModelState.AddModelError("", "Invalid email or password");
-                }
-            }
-
-            return View(loginViewModel);
-        }
+        
         [HttpPost]
         public async Task<IActionResult> Edit(UserRegister user)
         {
@@ -139,7 +105,6 @@ namespace E_ranga.Controllers
             try
             {
                 string email = HttpContext.Session.GetString("email");
-                //int isLogedIn = HttpContext.Session.GetInt32("isLogedIn").Value;
                 ViewData["email"] = email;
                 if (email != null)
                     return View();

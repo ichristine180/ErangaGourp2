@@ -68,7 +68,7 @@ namespace E_ranga
                  endpoints.MapControllerRoute(
                      name: "login",
                      pattern: "login",
-                     defaults: new { controller = "User", action = "Login" });
+                     defaults: new { controller = "Home", action = "Login" });
 
                  endpoints.MapControllerRoute(
                      name: "dashboard",
