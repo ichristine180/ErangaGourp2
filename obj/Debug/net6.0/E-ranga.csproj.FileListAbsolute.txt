@@ -156,3 +156,4 @@
 /home/chris/MyApp/ErangaGourp2/bin/Debug/net6.0/System.Text.Encodings.Web.dll
 /home/chris/MyApp/ErangaGourp2/bin/Debug/net6.0/System.Text.Json.dll
 /home/chris/MyApp/ErangaGourp2/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
+/home/chris/MyApp/ErangaGourp2/bin/Debug/net6.0/web.config

@@ -20,12 +20,25 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+  @if(@ViewData["email"] != null)
+    {
+        <li class="nav-item">
+        <a class="nav-link" asp-controller="User" asp-action="Dashboard"> Documents Management</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" asp-controller="User" asp-action="UserM"> Users Management</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" asp-controller="User" asp-action="Logout"><i class="fa-solid fa-circle-user"></i>  Logout </a>
+      </li>
+}else{
+        <li class="nav-item">
         <a class="nav-link" href="#">Post a document</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" asp-controller="User" asp-action="Login"><i class="fa-solid fa-circle-user"></i>  Login </a>
       </li>
+        }
     </ul>
     
   </div>

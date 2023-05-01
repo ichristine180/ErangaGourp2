@@ -18389,6 +18389,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/User/UserM.cshtml",
+      "TargetPath": "Views\\User\\UserM.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/chris/MyApp/ErangaGourp2/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"

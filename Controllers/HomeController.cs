@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using E_ranga.Models;
-
+using Microsoft.AspNetCore.Authorization;
 namespace E_ranga.Controllers;
 
 public class HomeController : Controller
@@ -12,13 +12,7 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
     public IActionResult Index()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
     {
         return View();
     }
