@@ -1,0 +1,48 @@
+@model Documents
+
+
+<div class="container shadow p-5">
+     <h4 class="display-6 text-center">Post a Lost Document</h4>
+
+    <form method="post" enctype="multipart/form-data" action="post">
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="OwnerNames">Owner Name</label>
+                <input type="text" class="form-control" asp-for="OwnerNames" placeholder="Owner Names" required>
+            </div>
+             <div class="form-group">
+                <label asp-for="PosterNames">Poster Name</label>
+                <input type="text" class="form-control" asp-for="PosterNames" placeholder="Poster Names">
+            </div>
+            <div class="form-group">
+                <label asp-for="PosterPhone">Poster Mobile No</label>
+                <input type="text" class="form-control" asp-for="PosterPhone" placeholder="Mobile no" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocType">Document Type</label>
+                <select class="form-control" asp-for="DocType"required >
+                           <option value="ID">Id</option>
+                           <option value="PASSPORT">Passport</option>
+                           <option value="Driving license">Driving license</option>
+                            <option value="Insurance">Insurance Card</option>
+                           
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageData">Document Image</label>
+                <input type="file" class="form-control" asp-for="ImageData" placeholder="Upload image" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description(like found place)</label>
+                <input type="text" class="form-control" asp-for="Description" placeholder="Description" required>
+            </div>
+        </div>
+
+
+       <div style="padding: 10px 0 10px 0;">
+         <button type="submit" class="btn btn-lg btn-primary" style="float:right;">Post</button>
+        <a asp-controller="Home" asp-action="Index" style="float:left;" class="btn btn-lg btn-secondary">Cancel</a>
+       </div>
+    </form>
+
+</div>
