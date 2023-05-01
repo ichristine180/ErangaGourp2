@@ -83,8 +83,13 @@ namespace E_ranga
                      name: "delete",
                      pattern: "delete/{id:int}",
                      defaults: new { controller = "User", action = "Delete" });
-
+                 endpoints.MapControllerRoute(
+                                      name: "create",
+                                      pattern: "create",
+                                      defaults: new { controller = "Home", action = "Create" });
              });
+
+            app.UseDeveloperExceptionPage();
             app.Run();
         }
     }

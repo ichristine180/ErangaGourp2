@@ -46,7 +46,7 @@ public class HomeController : Controller
                 if (passwordMatchesHash)
                 {
                     HttpContext.Session.SetString("email", loginViewModel.Email);
-                    return RedirectToAction("Dashboard","User");
+                    return RedirectToAction("Dashboard", "User");
                 }
                 else
                 {
@@ -61,5 +61,26 @@ public class HomeController : Controller
         }
 
         return View(loginViewModel);
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+      public async Task<IActionResult> Create(Documents doc)
+    {
+        // if (ModelState.IsValid)
+        // {
+        //     _context.documents.Add(doc);
+        //     _context.SaveChanges();
+        //     TempData["ResultOk"] = "Document posted Successfully !";
+        //     return RedirectToAction("Index");
+        // }
+        Console.WriteLine("Not valid");
+        return View("Create",doc);
     }
 }

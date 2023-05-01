@@ -17,23 +17,5 @@ public class DocumentController : Controller
 
 
 
-    public IActionResult Create()
-    {
-        return View();
-    }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public IActionResult post(Documents doc)
-    {
-        if (ModelState.IsValid)
-        {
-            _context.documents.Add(doc);
-            _context.SaveChanges();
-            TempData["ResultOk"] = "Document posted Successfully !";
-            return RedirectToAction("Index");
-        }
-
-        return View(doc);
-    }
 }
