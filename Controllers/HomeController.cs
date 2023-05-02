@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using E_ranga.Models;
 using BCrypt.Net;
 using E_ranga.Data;
+using Npgsql;
+
 
 namespace E_ranga.Controllers;
 
@@ -80,7 +82,28 @@ public class HomeController : Controller
         //     TempData["ResultOk"] = "Document posted Successfully !";
         //     return RedirectToAction("Index");
         // }
-        Console.WriteLine("Not valid");
+        string connectionString = "Server=localhost;Port=5432;Database=eranga;User Id=postgres;Password=post123;";
+
+        NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+        
+            connection.Open();
+
+            string sql = "INSERT INTO document (ownerName, posterName, poster MobileNo, documentType, documentImage, description) VALUES (@onames, @pnames, @pphone, @doctype, @docdata, @descr)";
+            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
+            
+                command.Parameters.AddWithValue("@onames", "owne_names");
+                command.Parameters.AddWithValue("@pname", "poster_names");
+                command.Parameters.AddWithValue("@pphone", "poster_phone");
+                command.Parameters.AddWithValue("@doctype", "doc_type");
+                command.Parameters.AddWithValue("@docdata", "doc_data");
+                command.Parameters.AddWithValue("@descr", "status");
+
+                command.ExecuteNonQuery();
+                connection.Close();
+
+    
+       // Console.WriteLine("Not valid");
         return View("Create",doc);
     }
 }
+

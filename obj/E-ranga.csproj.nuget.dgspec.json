@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj": {}
+    "/home/numubyeyi/Desktop/dotnet/ErangaGourp2/E-ranga.csproj": {}
   },
   "projects": {
-    "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj": {
+    "/home/numubyeyi/Desktop/dotnet/ErangaGourp2/E-ranga.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj",
+        "projectUniqueName": "/home/numubyeyi/Desktop/dotnet/ErangaGourp2/E-ranga.csproj",
         "projectName": "E-ranga",
-        "projectPath": "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj",
-        "packagesPath": "/home/chris/.nuget/packages/",
-        "outputPath": "/home/chris/MyApp/ErangaGourp2/obj/",
+        "projectPath": "/home/numubyeyi/Desktop/dotnet/ErangaGourp2/E-ranga.csproj",
+        "packagesPath": "/home/numubyeyi/.nuget/packages/",
+        "outputPath": "/home/numubyeyi/Desktop/dotnet/ErangaGourp2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/chris/.nuget/NuGet/NuGet.Config"
+          "/home/numubyeyi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -67,7 +67,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -79,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/home/numubyeyi/.dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }
