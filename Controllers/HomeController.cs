@@ -73,37 +73,24 @@ public class HomeController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-      public async Task<IActionResult> Create(Documents doc)
+    public async Task<IActionResult> Create(Documents doc, IFormFile image)
     {
-        // if (ModelState.IsValid)
-        // {
-        //     _context.documents.Add(doc);
-        //     _context.SaveChanges();
-        //     TempData["ResultOk"] = "Document posted Successfully !";
-        //     return RedirectToAction("Index");
-        // }
-        string connectionString = "Server=localhost;Port=5432;Database=eranga;User Id=postgres;Password=post123;";
-
-        NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-        
-            connection.Open();
-
-            string sql = "INSERT INTO document (ownerName, posterName, poster MobileNo, documentType, documentImage, description) VALUES (@onames, @pnames, @pphone, @doctype, @docdata, @descr)";
-            NpgsqlCommand command = new NpgsqlCommand(sql, connection);
-            
-                command.Parameters.AddWithValue("@onames", "owne_names");
-                command.Parameters.AddWithValue("@pname", "poster_names");
-                command.Parameters.AddWithValue("@pphone", "poster_phone");
-                command.Parameters.AddWithValue("@doctype", "doc_type");
-                command.Parameters.AddWithValue("@docdata", "doc_data");
-                command.Parameters.AddWithValue("@descr", "status");
-
-                command.ExecuteNonQuery();
-                connection.Close();
-
-    
-       // Console.WriteLine("Not valid");
-        return View("Create",doc);
+        if (ModelState.IsValid)
+        {
+            if (image != null && image.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await image.CopyToAsync(memoryStream);
+                    doc.ImageData = memoryStream.ToArray();
+                }
+            }
+            _context.documents.Add(doc);
+            _context.SaveChanges();
+            TempData["success"] = " Thank you for posting the lost document. Your contribution is greatly appreciated!";
+            return RedirectToAction("Index");
+        }
+        return View("Create", doc);
     }
 }
 

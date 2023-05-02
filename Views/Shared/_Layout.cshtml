@@ -46,6 +46,12 @@
 </nav>
     </header>
     <div class="container min-vh-100">
+     @if(TempData["success"] != null){
+       <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert">
+             @TempData["success"]
+  <i class="fas fa-times" style="float: right; cursor:pointer;" onclick="myFunction()"></i>
+   </div>
+     }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -60,5 +66,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+      function myFunction() {
+      document.getElementById("alert").style.display="none";
+}
+    </script>
 </body>
 </html>
