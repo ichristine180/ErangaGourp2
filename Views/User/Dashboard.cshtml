@@ -1,2 +1,27 @@
-
+@model List<Documents>
 <h4 class="display-6 text-center">Documents Management</h4>
+<table id="example" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Owner Name</th>
+            <th>Poster Name</th>
+            <th>Poster Phone Number</th>
+            <th>Type</th>
+            <th>Status</th>
+             <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var doc in Model)
+        {
+            <tr>
+                <td>@doc.OwnerNames</td>
+                <td>@doc.PosterNames</td>
+                <td>@doc.PosterPhone</td>
+                <td>@doc.DocType</td>
+                <td>@doc.Status</td>
+                <td>@doc.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
