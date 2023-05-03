@@ -218,3 +218,4 @@
 /home/numubyeyi/Desktop/dotnet/ErangaGourp2/obj/Debug/net6.0/E-ranga.pdb
 /home/numubyeyi/Desktop/dotnet/ErangaGourp2/obj/Debug/net6.0/E-ranga.genruntimeconfig.cache
 /home/numubyeyi/Desktop/dotnet/ErangaGourp2/obj/Debug/net6.0/ref/E-ranga.dll
+/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/bin/Debug/net6.0/web.config

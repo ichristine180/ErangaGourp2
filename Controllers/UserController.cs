@@ -111,7 +111,10 @@ namespace E_ranga.Controllers
                     var documents = _context.documents.OrderBy(d => d.Status).ToList();
                     return View(documents);
                 }
-                else return RedirectToAction("Index", "Home");
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch (System.Exception)
             {

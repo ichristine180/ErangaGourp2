@@ -1,0 +1,26 @@
+<div class="container_viewDocument">
+  <div class="header_viewDocument">
+    <h4 class="display-6">All Documents</h4>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-secondary">Back to home page</a>
+  </div>
+  <div class="card-container" style="width: 20rem;display: grid; grid-template-columns: 20rem 20rem 20rem;
+  gap: 10px;">
+    @foreach (var doc in Model)
+    {
+      @if(doc.Status==1){
+      <div class="card">
+        <img src="@doc.ImageDataUrl" class="card-img-top" alt="Document Image">
+        <div class="card-body">
+          <h5 class="card-title">@doc.DocType</h5>
+          <h6 class="card-subtitle mb-2 text-muted">@doc.OwnerNames</h6>
+          <p class="card-text">@doc.Description</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Poster Name:</strong> @doc.PosterNames</li>
+          <li class="list-group-item"><strong>Poster Phone:</strong> @doc.PosterPhone</li>
+        </ul>
+      </div>
+      }    
+    }
+  </div>
+</div>

@@ -35,6 +35,8 @@ namespace E_ranga.Models
         [Display(Name = "Document")]
         [Column("doc_data")]
         public byte[] ImageData { get; set; }
+        [NotMapped]
+        public string ImageDataUrl { get; set; } // Data URL of the image
 
     }
 }

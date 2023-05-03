@@ -19,7 +19,7 @@ public class DocumentController : Controller
     [HttpGet]
     public async Task<IActionResult> Publish(int Id)
     {
-        await UpdateStatus(Id, 1,"The Document has been Unpublished successfully!");
+        await UpdateStatus(Id, 1,"The Document has been Published successfully!");
         return RedirectToAction("Dashboard", "User");
     }
 
@@ -52,5 +52,7 @@ public class DocumentController : Controller
 
         TempData["success"] = message;
     }
+
+    
 
 }

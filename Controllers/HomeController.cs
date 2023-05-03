@@ -4,7 +4,10 @@ using E_ranga.Models;
 using BCrypt.Net;
 using E_ranga.Data;
 using Npgsql;
-
+using System.Drawing;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
+using System.Drawing;
 
 namespace E_ranga.Controllers;
 
@@ -13,6 +16,8 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly Namespace.IUserRepository _userRepository;
     private readonly ApplicationDbContext _context;
+
+
     public HomeController(ILogger<HomeController> logger, Namespace.IUserRepository userRepository, ApplicationDbContext context)
     {
         _logger = logger;
@@ -92,5 +97,29 @@ public class HomeController : Controller
         }
         return View("Create", doc);
     }
+[HttpGet]
+public IActionResult ViewDocument()
+{
+    try
+    {
+        var documents = _context.documents.OrderBy(d => d.Status).ToList();
+        foreach (var doc in documents)
+        {
+            // Convert image data from byte array to image format
+            if (doc.ImageData != null && doc.ImageData.Length > 0)
+            {
+                var imageBase64Data = Convert.ToBase64String(doc.ImageData);
+                var imageDataUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                doc.ImageDataUrl = imageDataUrl;
+            }
+        }
+        return View(documents);
+    }
+    catch (System.Exception)
+    {
+        throw;
+    }
+}
+
 }
 

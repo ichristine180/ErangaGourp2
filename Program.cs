@@ -74,6 +74,10 @@ namespace E_ranga
                      name: "dashboard",
                      pattern: "dashboard",
                      defaults: new { controller = "User", action = "Dashboard" });
+                endpoints.MapControllerRoute(
+                     name: "view",
+                     pattern: "view",
+                     defaults: new { controller = "Home", action = "ViewDocument" });
                  endpoints.MapControllerRoute(
                      name: "edit",
                      pattern: "edit/{id:int}",
