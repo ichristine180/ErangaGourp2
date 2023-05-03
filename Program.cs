@@ -78,7 +78,6 @@ namespace E_ranga
                      name: "edit",
                      pattern: "edit/{id:int}",
                      defaults: new { controller = "User", action = "Edit" });
-
                  endpoints.MapControllerRoute(
                      name: "delete",
                      pattern: "delete/{id:int}",

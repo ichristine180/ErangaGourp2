@@ -9,6 +9,7 @@
             <th>Type</th>
             <th>Status</th>
              <th>Description</th>
+             <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -19,14 +20,32 @@
                 <td>@doc.PosterNames</td>
                 <td>@doc.PosterPhone</td>
                 <td>@doc.DocType</td>
-                <td>@doc.Status</td>
+               @if(doc.Status==0) {
+                <td>
+               Submitted
+                </td>
+               }
+               @if(doc.Status==1) {
+                <td>
+               Published
+                </td>
+               }
+                @if(doc.Status==2) {
+                <td>
+               Closed
+                </td>
+               }
                 <td>@doc.Description</td>
+                <td>
+                    @if(doc.Status == 0){
+                   <a title="Publish" class="btn btn-primary"  href="@Url.Action("Publish", "Document", new { id = doc.Id })"> <i class="fa-solid fa-bullhorn"></i></a>
+                     <a title="Delete" class="btn btn-danger" href="@Url.Action("Delete", "Document", new { id = doc.Id })"><i class="fa-sharp fa-solid fa-trash"></i></a>
+                    }
+                    @if(doc.Status == 1){
+                    <a title="Close" class="btn btn-success" href="@Url.Action("Unpublish", "Document", new { id = doc.Id })"><i class="fa-sharp fa-solid fa-eraser"></i></a>
+                    }
+                    </td>
             </tr>
         }
     </tbody>
 </table>
-<script>
-    $(document).ready(function () {
-    $('#example').DataTable();
-});
-</script>

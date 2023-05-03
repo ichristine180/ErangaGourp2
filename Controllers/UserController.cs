@@ -108,7 +108,7 @@ namespace E_ranga.Controllers
                 ViewData["email"] = email;
                 if (email != null)
                 {
-                    var documents = _context.documents.ToList();
+                    var documents = _context.documents.OrderBy(d => d.Status).ToList();
                     return View(documents);
                 }
                 else return RedirectToAction("Index", "Home");
