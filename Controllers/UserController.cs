@@ -4,7 +4,7 @@ using E_ranga.Data;
 using Namespace;
 using Microsoft.EntityFrameworkCore;
 namespace E_ranga.Controllers
-{ 
+{
     public class UserController : BaseController
     {
         private readonly IUserRepository _userRepository;
@@ -50,14 +50,14 @@ namespace E_ranga.Controllers
             }
             return View("Register", users);
         }
-        
+
         [HttpGet]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Dashboard");
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Edit(UserRegister user)
         {
@@ -93,12 +93,12 @@ namespace E_ranga.Controllers
             await _userRepository.DeleteUserAsync(user);
             return RedirectToAction("Dashboard");
         }
-    public async Task<IActionResult> UserM()
-    {
-        var users = await _userRepository.GetAllUsersAsync();
-        return View(users);
-    }
-    
+        public async Task<IActionResult> UserM()
+        {
+            var users = await _userRepository.GetAllUsersAsync();
+            return View(users);
+        }
+
         [HttpGet]
         public async Task<IActionResult> Dashboard()
         {
@@ -107,7 +107,10 @@ namespace E_ranga.Controllers
                 string email = HttpContext.Session.GetString("email");
                 ViewData["email"] = email;
                 if (email != null)
-                    return View();
+                {
+                    var documents = _context.documents.ToList();
+                    return View(documents);
+                }
                 else return RedirectToAction("Index", "Home");
             }
             catch (System.Exception)
@@ -119,5 +122,5 @@ namespace E_ranga.Controllers
         }
     }
 
-    
+
 }
