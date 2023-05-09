@@ -5,7 +5,7 @@ using E_ranga.Data;
 
 namespace E_ranga.Controllers;
 
-public class DocumentController : Controller
+public class DocumentController : BaseController
 {
     private readonly ILogger<DocumentController> _logger;
     private readonly ApplicationDbContext _context;

@@ -4,12 +4,6 @@
 
  <div class="text-center"> 
    <h1 class="display-4"> Welcome to E-ranga platform</h1>
-  <form class="example" action="#" autocomplete="off">
-  <div class="search">
-    <input type="text" class="search-input" placeholder="Search.." name="search">
-   <i class="fas fa-search"></i>
-  </div>
-</form>
   
   </div>
 <div class="grid-container">
@@ -26,6 +20,38 @@ Our platform allows you to post information about the document you found, such a
 By using our platform, you can help reunite people with their important documents and avoid the hassle of contacting multiple organizations or individuals. We hope that this platform will be a valuable resource for you and others who have found or lost important documents.
    </p>
   </div>
- 
- 
 </div>
+ <div class="container_viewDocument">
+  <div class="header_viewDocument">
+    <h4 class="display-6 text-center" style="    
+    border-bottom: solid;
+    border-radius: 7px;
+    border-width: 1px;
+    padding: 10px;
+    margin: 30px;">posted Documents</h4>
+  </div>
+  <div class="card-container" style="width: 20rem;display: grid; grid-template-columns: 20rem 20rem 20rem;
+  gap: 10px;">
+    @foreach (var doc in Model)
+    {
+      @if(doc.Status==1){
+      <div class="card">
+        <img src="@doc.ImageDataUrl" class="card-img-top" alt="Document Image">
+        <div class="card-body">
+          <h5 class="card-title">@doc.DocType</h5>
+          <h6 class="card-subtitle mb-2 text-muted">@doc.OwnerNames</h6>
+          <p class="card-text">@doc.Description</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Poster Name:</strong> @doc.PosterNames</li>
+          <li class="list-group-item"><strong>Poster Phone:</strong> @doc.PosterPhone</li>
+        </ul>
+      </div>
+      }    
+    }
+    @if(Model.Count == 0){
+       <p class="text-center">No posted documents at the moment.</p>
+    }
+  </div>
+</div>
+ 

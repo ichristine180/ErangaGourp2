@@ -24,9 +24,36 @@ public class HomeController : Controller
         _userRepository = userRepository;
         _context = context;
     }
+    public void convertImage(List<Documents> documents)
+    {
+        foreach (var doc in documents)
+        {
+            // Convert image data from byte array to image format
+            if (doc.ImageData != null && doc.ImageData.Length > 0)
+            {
+                var imageBase64Data = Convert.ToBase64String(doc.ImageData);
+                var imageDataUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
+                doc.ImageDataUrl = imageDataUrl;
+            }
+        }
+    }
+    public List<Documents> GetDocuments()
+    {
+        var documents = _context.documents.OrderBy(d => d.Status).Where(d => d.Status == 1).ToList();
+        convertImage(documents);
+        return documents;
+    }
     public IActionResult Index()
     {
-        return View();
+        try
+        {
+            var documents = GetDocuments();
+            return View(documents);
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -97,29 +124,24 @@ public class HomeController : Controller
         }
         return View("Create", doc);
     }
-[HttpGet]
-public IActionResult ViewDocument()
-{
-    try
+    [HttpGet]
+    public IActionResult Search(string searchTerm)
     {
-        var documents = _context.documents.OrderBy(d => d.Status).ToList();
-        foreach (var doc in documents)
+        try
         {
-            // Convert image data from byte array to image format
-            if (doc.ImageData != null && doc.ImageData.Length > 0)
+            var documents = GetDocuments();
+            if (searchTerm != null)
             {
-                var imageBase64Data = Convert.ToBase64String(doc.ImageData);
-                var imageDataUrl = string.Format("data:image/png;base64,{0}", imageBase64Data);
-                doc.ImageDataUrl = imageDataUrl;
+                documents = _context.documents.Where(p => p.OwnerNames.ToLower().Contains(searchTerm.ToLower()) || p.DocType.ToLower().Contains(searchTerm.ToLower()) && p.Status == 1).ToList();
+                convertImage(documents);
             }
+            return View("ViewDocument", documents);
         }
-        return View(documents);
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
-    catch (System.Exception)
-    {
-        throw;
-    }
-}
 
 }
 

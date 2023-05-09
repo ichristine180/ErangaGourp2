@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/E-ranga.csproj": {}
+    "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj": {}
   },
   "projects": {
-    "/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/E-ranga.csproj": {
+    "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/E-ranga.csproj",
+        "projectUniqueName": "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj",
         "projectName": "E-ranga",
-        "projectPath": "/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/E-ranga.csproj",
-        "packagesPath": "/Users/andelarwanda/.nuget/packages/",
-        "outputPath": "/Users/andelarwanda/Desktop/Projects/DotNet/ErangaGourp2/obj/",
+        "projectPath": "/home/chris/MyApp/ErangaGourp2/E-ranga.csproj",
+        "packagesPath": "/home/chris/.nuget/packages/",
+        "outputPath": "/home/chris/MyApp/ErangaGourp2/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/andelarwanda/.nuget/NuGet/NuGet.Config"
+          "/home/chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -67,8 +67,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -80,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
         }
       }
     }

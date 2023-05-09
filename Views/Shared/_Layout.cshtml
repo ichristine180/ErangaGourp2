@@ -14,7 +14,7 @@
 </head>
 <body style="background-color: #fefbf6; color:#3b4357; padding:60px;">
     <header>
-  <nav class="navbar navbar-expand-lg navbar-light" style="top:0;color:#3b4357 !important;">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="top:0;color:#3b4357 !important;">
   <a class="navbar-brand" asp-controller="Home" asp-action="Index">E RANGA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -36,12 +36,18 @@
       <li class="nav-item">
         <a class="nav-link" asp-controller="Home" asp-action="Create">Post a document</a>
       </li>
-       <li class="nav-item">
+       @* <li class="nav-item">
         <a class="nav-link" asp-controller="Home" asp-action="ViewDocument">Find Document</a>
-      </li>
+      </li> *@
       <li class="nav-item">
         <a class="nav-link" asp-controller="Home" asp-action="Login"><i class="fa-solid fa-circle-user"></i>  Login </a>
       </li>
+  <li class="nav-item"> <form class="example" method="get" action="@Url.Action("Search", "Home")">
+  <div class="search">
+    <input type="text" class="search-input" placeholder="Search.." name="searchTerm">
+   <i class="fas fa-search"></i>
+  </div>
+</form></li>
         }
     </ul>
     

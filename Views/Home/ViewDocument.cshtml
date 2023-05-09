@@ -1,9 +1,9 @@
 <div class="container_viewDocument">
   <div class="header_viewDocument">
-    <h4 class="display-6">All Documents</h4>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-secondary">Back to home page</a>
+   
+    <a asp-controller="Home" asp-action="Index" class="btn btn-success" title="Go back to home"><i class="fa fa-arrow-left"></i></a>
   </div>
-  <div class="card-container" style="width: 20rem;display: grid; grid-template-columns: 20rem 20rem 20rem;
+  <div class="card-container mt-5 pt-5" style="width: 20rem;display: grid; grid-template-columns: 20rem 20rem 20rem;
   gap: 10px;">
     @foreach (var doc in Model)
     {
@@ -21,6 +21,9 @@
         </ul>
       </div>
       }    
+    }
+   @if(Model.Count == 0){
+       <p class="text-center">No Documents found with searched Item</p>
     }
   </div>
 </div>
