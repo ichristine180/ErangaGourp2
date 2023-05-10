@@ -23,6 +23,7 @@ namespace E_ranga.Models
         [Column("address")]
         public string Address { get; set; }
         [Required(ErrorMessage = "Please enter your phone number")]
+        [RegularExpression(@"^(07)?[9823]\d{7}$", ErrorMessage = "Invalid phone number.")]
         [Column("phone_number")]
         public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "Please enter your password")]
@@ -33,7 +34,13 @@ namespace E_ranga.Models
         [Required(ErrorMessage = "Please confirm your password")]
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords do not match")]
-        [Column("confirm_password")] 
+        [Column("confirm_password")]
         public string ConfirmPassword { get; set; }
+
+        [Column("role")]
+        public string Role { get; set; }
+
+        [InverseProperty(nameof(Documents.UserRegister))]
+        public virtual ICollection<Documents> Document { get; set; }
     }
 }

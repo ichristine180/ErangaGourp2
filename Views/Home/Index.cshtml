@@ -9,16 +9,15 @@
 <div class="grid-container">
    <div class="item2">
     <img src="~/images/eranga.png"/>
-    <a style="margin-top: 10px;" class="btn" asp-controller="Home" asp-action="Create">Post Document</a>
   </div>  
   <div class="item3">
      <p>
 Have you found a document that doesn't belong to you and don't know how to return it to its rightful owner? Or have you lost an important document and want to see if someone has found it and posted it online? We understand the importance of documents and how difficult it can be to lose or find them, that's why we created this platform to help you.
 
-Our platform allows you to post information about the document you found, such as its type, description, and where and when it was found. The one who lost it can search our platform using keywords, location, and other relevant information to see if their lost document has been found and posted.
+@* Our platform allows you to post information about the document you found, such as its type, description, and where and when it was found. The one who lost it can search our platform using keywords, location, and other relevant information to see if their lost document has been found and posted.
 
 By using our platform, you can help reunite people with their important documents and avoid the hassle of contacting multiple organizations or individuals. We hope that this platform will be a valuable resource for you and others who have found or lost important documents.
-   </p>
+   </p> *@
   </div>
 </div>
  <div class="container_viewDocument">
@@ -43,8 +42,8 @@ By using our platform, you can help reunite people with their important document
           <p class="card-text">@doc.Description</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong>Poster Name:</strong> @doc.PosterNames</li>
-          <li class="list-group-item"><strong>Poster Phone:</strong> @doc.PosterPhone</li>
+          <li class="list-group-item"><strong>Poster Name:</strong> @doc.UserRegister.FirstName</li>
+          <li class="list-group-item"><strong>Poster Phone:</strong> @doc.UserRegister.PhoneNumber</li>
         </ul>
       </div>
       }    

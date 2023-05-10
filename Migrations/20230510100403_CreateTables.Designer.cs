@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace E_ranga.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230503100331_ADDUserTable")]
-    partial class ADDUserTable
+    [Migration("20230510100403_CreateTables")]
+    partial class CreateTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,21 +52,17 @@ namespace E_ranga.Migrations
                         .HasColumnType("text")
                         .HasColumnName("owner_names");
 
-                    b.Property<string>("PosterNames")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("poster_names");
-
-                    b.Property<string>("PosterPhone")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("poster_phone");
+                    b.Property<int>("PosterId")
+                        .HasColumnType("integer")
+                        .HasColumnName("poster_id");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer")
                         .HasColumnName("status");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PosterId");
 
                     b.ToTable("documents");
                 });
@@ -123,9 +119,29 @@ namespace E_ranga.Migrations
                         .HasColumnType("text")
                         .HasColumnName("phone_number");
 
+                    b.Property<string>("Role")
+                        .HasColumnType("text")
+                        .HasColumnName("role");
+
                     b.HasKey("Id");
 
                     b.ToTable("users");
+                });
+
+            modelBuilder.Entity("E_ranga.Models.Documents", b =>
+                {
+                    b.HasOne("E_ranga.Models.UserRegister", "UserRegister")
+                        .WithMany("Document")
+                        .HasForeignKey("PosterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserRegister");
+                });
+
+            modelBuilder.Entity("E_ranga.Models.UserRegister", b =>
+                {
+                    b.Navigation("Document");
                 });
 #pragma warning restore 612, 618
         }

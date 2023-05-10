@@ -1,5 +1,8 @@
 @model List<Documents>
 <h4 class="display-6 text-center">Documents Management</h4>
+<div id="image-container">
+</div>
+
 <table id="example" class="table table-striped" style="width:100%">
     <thead>
         <tr>
@@ -15,10 +18,11 @@
     <tbody>
         @foreach (var doc in Model)
         {
-            <tr>
+            <tr  style="cursor: pointer;" title="View Image"  onclick="showImage('@doc.Id')">
                 <td>@doc.OwnerNames</td>
-                <td>@doc.PosterNames</td>
-                <td>@doc.PosterPhone</td>
+                <td>@doc.UserRegister.FirstName</td>
+                <td>@doc.UserRegister.PhoneNumber</td>
+                 <td>@doc.UserRegister.Email</td>
                 <td>@doc.DocType</td>
                @if(doc.Status==0) {
                 <td>
@@ -49,3 +53,35 @@
         }
     </tbody>
 </table>
+
+
+
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="imageModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showImage(id) {
+        var img = document.createElement('img');
+        img.src = '@Url.Action("GetImage", "Document")' + '?id=' + id;
+        img.style.maxWidth = '100%';
+        var container = document.createElement('div');
+        container.appendChild(img);
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+        var modalBody = document.getElementById('imageModalBody');
+        modalBody.innerHTML = '';
+        modalBody.appendChild(container);
+    }
+</script>
+

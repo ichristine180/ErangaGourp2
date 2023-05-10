@@ -5,7 +5,7 @@ using Namespace;
 using Microsoft.EntityFrameworkCore;
 namespace E_ranga.Controllers
 {
-    public class UserController : BaseController
+    public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;
         private readonly ApplicationDbContext _context;
@@ -38,7 +38,8 @@ namespace E_ranga.Controllers
                         Email = users.Email,
                         Address = users.Address,
                         PhoneNumber = users.PhoneNumber,
-                        Password = hashedPassword
+                        Password = hashedPassword,
+                        Role = "user"
                     };
                     await _userRepository.CreateUserAsync(newUser);
                     return RedirectToAction("Login");
@@ -55,74 +56,48 @@ namespace E_ranga.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Dashboard");
+            return RedirectToAction("Index","Home");
         }
 
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
         [HttpPost]
-        public async Task<IActionResult> Edit(UserRegister user)
+        public async Task<IActionResult> Login(UserLogin loginViewModel)
         {
             if (ModelState.IsValid)
             {
-                try
+                var user = await _userRepository.GetUserByEmailAsync(loginViewModel.Email);
+                if (user != null)
                 {
-                    await _userRepository.UpdateUserAsync(user);
-                    return RedirectToAction("Dashboard");
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    var userExist = await _userRepository.GetUserByEmailAsync(user.Email);
-                    if (userExist == null)
+                    bool passwordMatchesHash = BCrypt.Net.BCrypt.Verify(loginViewModel.Password, user.Password);
+                    if (passwordMatchesHash)
                     {
-                        return NotFound();
+                        HttpContext.Session.SetString("role", user.Role);
+                        HttpContext.Session.SetString("email", loginViewModel.Email);
+                        if (user.Role == "admin")
+                            return RedirectToAction("Dashboard", "Document");
+                        else return RedirectToAction("Create", "Document");
                     }
-                    throw;
-                }
-            }
-            return View(user);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var user = await _userRepository.GetUserByIdAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            await _userRepository.DeleteUserAsync(user);
-            return RedirectToAction("Dashboard");
-        }
-        public async Task<IActionResult> UserM()
-        {
-            var users = await _userRepository.GetAllUsersAsync();
-            return View(users);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Dashboard()
-        {
-            try
-            {
-                string email = HttpContext.Session.GetString("email");
-                ViewData["email"] = email;
-                if (email != null)
-                {
-                    var documents = _context.documents.OrderBy(d => d.Status).ToList();
-                    return View(documents);
+                    else
+                    {
+                        ModelState.AddModelError("", "Invalid Password");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home");
+                    Console.WriteLine("Invalid email or password");
+                    ModelState.AddModelError("", "Invalid email or password");
                 }
             }
-            catch (System.Exception)
-            {
 
-                throw;
-            }
-
+            return View(loginViewModel);
         }
+
+
     }
 
 

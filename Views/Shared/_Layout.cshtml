@@ -21,26 +21,29 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-  @if(@Context.Session.GetString("email") != null)
-    {
-        <li class="nav-item">
-        <a class="nav-link" asp-controller="User" asp-action="Dashboard"> Documents Management</a>
+      @if(@Context.Session.GetString("role") =="admin"){
+      <li class="nav-item">
+        <a class="nav-link" asp-controller="Document" asp-action="Dashboard"> Documents Management</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" asp-controller="User" asp-action="UserM"> Users Management</a>
+        <a class="nav-link" asp-controller="Document" asp-action="UserM">Users</a>
       </li>
+      }
+  @if(@Context.Session.GetString("email") != null)
+    {
        <li class="nav-item">
         <a class="nav-link" asp-controller="User" asp-action="Logout"><i class="fa-solid fa-circle-user"></i>  Logout </a>
       </li>
 }else{
       <li class="nav-item">
-        <a class="nav-link" asp-controller="Home" asp-action="Create">Post a document</a>
+        <a class="nav-link" asp-controller="User" asp-action="Login">Post a document</a>
+        @* <a class="nav-link" asp-controller="Home" asp-action="Create">Post a document</a> *@
       </li>
        @* <li class="nav-item">
         <a class="nav-link" asp-controller="Home" asp-action="ViewDocument">Find Document</a>
       </li> *@
       <li class="nav-item">
-        <a class="nav-link" asp-controller="Home" asp-action="Login"><i class="fa-solid fa-circle-user"></i>  Login </a>
+        <a class="nav-link" asp-controller="User" asp-action="Login"><i class="fa-solid fa-circle-user"></i>  Login </a>
       </li>
   <li class="nav-item"> <form class="example" method="get" action="@Url.Action("Search", "Home")">
   <div class="search">
@@ -80,10 +83,5 @@
       document.getElementById("alert").style.display="none";
 }
     </script>
-    <script>
-    $(document).ready(function () {
-    $('#example').DataTable();
-});
-</script>
 </body>
 </html>
